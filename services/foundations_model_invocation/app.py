@@ -212,7 +212,7 @@ async def async_invoke_model_endpoint(request: InvokeModelRequest, background_ta
         "temperature": 0.7,
         "top_p": 0.9,
         "top_k": 50,
-        "stop_sequences": ["\\n"]
+        "stop_sequences": ["\\\\n"]
     }
     ```
     ***
@@ -430,7 +430,7 @@ async def invoke_model(request: InvokeModelRequest, app_id: str = Depends(get_ap
         "temperature": 0.7, 
         "top_p": 0.9, 
         "top_k": 50, 
-        "stop_sequences": ["\\n"] 
+        "stop_sequences": ["\\\\n"] 
     }
     ```
 
@@ -453,7 +453,7 @@ async def invoke_model(request: InvokeModelRequest, app_id: str = Depends(get_ap
         "temperature": 0.7, 
         "top_p": 0.9, 
         "top_k": 50, 
-        "stop_sequences": ["\\n"], 
+        "stop_sequences": ["\\\\n"], 
         "system_prompts": [ 
             { 
                 "text": "Your system prompt here" 

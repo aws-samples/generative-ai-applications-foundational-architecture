@@ -1,0 +1,1 @@
+> Clone the repo and open api_docs.html in your browser for API docs. The API docs is rendered using Swagger UI

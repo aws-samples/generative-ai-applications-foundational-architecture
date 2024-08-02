@@ -1,0 +1,9 @@
+foundations_model_invocation ./services/foundations_model_invocation
+foundations_document_processing ./services/foundations_document_processing
+foundations_extraction ./services/foundations_extraction
+foundations_chunking ./services/foundations_chunking
+foundations_vectorization ./services/foundations_vectorization
+foundations_vector_process ./services/foundations_vector_job_process
+foundations_prompt_template ./services/foundations_prompt_management
+admin_backend_service ./admin-ui/backend/app
+

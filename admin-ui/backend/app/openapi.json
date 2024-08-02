@@ -1,0 +1,705 @@
+{
+    "openapi": "3.0.2",
+    "info": {
+        "title": "Generative AI Foundations API",
+        "version": "0.1",
+        "stamp": "2021-09-01"
+    },
+    "paths": {
+        "/model/service/health": {
+            "get": {
+                "summary": "Health Check",
+                "operationId": "health_check_model_service_health_get",
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/model/invoke": {
+            "post": {
+                "summary": "Invoke Model",
+                "description": "Endpoint to invoke model on Bedrock with standardized input. Takes model name, prompt, and optional parameters. Please check /model/list_models for supported models and their model names.\n\nSample Input:\n  {\n       \"model_name\": \"ANTHROPIC_CLAUDE_3_SONNET_V1\",\n       \"prompt\": \"Translate the following text to French: 'Hello, how are you?'\",\n       \"max_tokens\": 100,\n       \"temperature\": 0.7,\n       \"top_p\": 0.9,\n       \"top_k\": 50,\n       \"stop_sequences\": [\"\\n\"]\n  }",
+                "operationId": "invoke_model_model_invoke_post",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/InvokeModelRequest"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/model/invoke_with_raw_input": {
+            "post": {
+                "summary": "Invoke Model With Raw Input",
+                "description": "Invoke model on bedrock with raw input. Takes model ID and raw input. Please check Bedrock documentation for model-specific input format and model ID.\n\nSample Input:\n{\n\"model_id\": \"anthropic.claude-3-sonnet-20240229-v1:0\",\n\"raw_input\": {\n    \"anthropic_version\": \"bedrock-2023-05-31\", \n    \"max_tokens\": 1024,\n    \"messages\": [\n        {\n            \"role\": \"user\",\n            \"content\": [\n            \n                {\n                    \"type\": \"text\",\n                    \"text\": \"Hello\"\n                }\n            ]\n        }\n    ]\n}\n}",
+                "operationId": "invoke_model_with_raw_input_model_invoke_with_raw_input_post",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/InvokeModelWithRawInputRequest"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/model/embed": {
+            "post": {
+                "summary": "Invoke Embed",
+                "description": "Endpoint to invoke embed models. Takes model name, input text, and optional parameters. Please check /model/list_models for supported models and their model names.\nSample Input:\n {\n     \"model_name\":\"TITAN_TEXT_EMBED_V2\",\n     \"input_text\": \"Hello World\"\n }",
+                "operationId": "invoke_embed_model_embed_post",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/InvokeEmbedModelRequest"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/model/list_models": {
+            "get": {
+                "summary": "List Models",
+                "description": "Endpoint to list supported models and their model names and model IDs.",
+                "operationId": "list_models_model_list_models_get",
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/document/extraction/create_job": {
+            "post": {
+                "summary": "Create Extraction Job",
+                "description": "Endpoint to create an extraction job. Returns the job_id that can be used to register files and start the job.",
+                "operationId": "create_extraction_job_document_extraction_create_job_post",
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/document/extraction/register_file": {
+            "post": {
+                "summary": "Register File",
+                "description": "Endpoint to register a file for extraction. Returns a presigned URL to upload the file to S3.",
+                "operationId": "register_file_document_extraction_register_file_post",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/RegisterFileRequest"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/document/extraction/start_job": {
+            "post": {
+                "summary": "Start Extraction Job",
+                "description": "Endpoint to start an extraction job. Returns the status of the job.",
+                "operationId": "start_extraction_job_document_extraction_start_job_post",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/StartJobRequest"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/document/extraction/job_files/{job_id}": {
+            "get": {
+                "summary": "Get Files For Job",
+                "description": "Endpoint to get all files registered for a job. Returns a list of files with their status",
+                "operationId": "get_files_for_job_document_extraction_job_files__job_id__get",
+                "parameters": [
+                    {
+                        "name": "job_id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "title": "Job Id"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/document/extraction/job_status/{job_id}": {
+            "get": {
+                "summary": "Get Job Status",
+                "description": "Endpoint to get the status of an extraction job.",
+                "operationId": "get_job_status_document_extraction_job_status__job_id__get",
+                "parameters": [
+                    {
+                        "name": "job_id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "title": "Job Id"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/document/extraction/file_status/{job_id}/{file_name}": {
+            "get": {
+                "summary": "Get File Status",
+                "description": "Endpoint to get the status of a file in an extraction job.",
+                "operationId": "get_file_status_document_extraction_file_status__job_id___file_name__get",
+                "parameters": [
+                    {
+                        "name": "job_id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "title": "Job Id"
+                        }
+                    },
+                    {
+                        "name": "file_name",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "title": "File Name"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/document/extraction/job_results/{job_id}": {
+            "get": {
+                "summary": "Get Job Results",
+                "description": "Endpoint to get the results of an extraction job. Returns presigned URLs for the extracted text and tables for each file in the job.",
+                "operationId": "get_job_results_document_extraction_job_results__job_id__get",
+                "parameters": [
+                    {
+                        "name": "job_id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "title": "Job Id"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/document/service/health": {
+            "get": {
+                "summary": "Health Check",
+                "operationId": "health_check_document_service_health_get",
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "HTTPValidationError": {
+                "properties": {
+                    "detail": {
+                        "items": {
+                            "$ref": "#/components/schemas/ValidationError"
+                        },
+                        "type": "array",
+                        "title": "Detail"
+                    }
+                },
+                "type": "object",
+                "title": "HTTPValidationError"
+            },
+            "InvokeEmbedModelRequest": {
+                "properties": {
+                    "model_name": {
+                        "type": "string",
+                        "title": "Model Name"
+                    },
+                    "input_text": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Input Text"
+                    },
+                    "dimensions": {
+                        "anyOf": [
+                            {
+                                "type": "integer"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Dimensions"
+                    },
+                    "normalize": {
+                        "anyOf": [
+                            {
+                                "type": "boolean"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Normalize"
+                    },
+                    "texts": {
+                        "anyOf": [
+                            {
+                                "items": {
+                                    "type": "string"
+                                },
+                                "type": "array"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Texts"
+                    },
+                    "input_type": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Input Type"
+                    },
+                    "truncate": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Truncate"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "model_name"
+                ],
+                "title": "InvokeEmbedModelRequest"
+            },
+            "InvokeModelRequest": {
+                "properties": {
+                    "model_name": {
+                        "type": "string",
+                        "title": "Model Name"
+                    },
+                    "prompt": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "items": {
+                                    "additionalProperties": {
+                                        "anyOf": [
+                                            {
+                                                "type": "string"
+                                            },
+                                            {
+                                                "items": {
+                                                    "additionalProperties": {
+                                                        "type": "string"
+                                                    },
+                                                    "type": "object"
+                                                },
+                                                "type": "array"
+                                            }
+                                        ]
+                                    },
+                                    "type": "object"
+                                },
+                                "type": "array"
+                            }
+                        ],
+                        "title": "Prompt"
+                    },
+                    "max_tokens": {
+                        "anyOf": [
+                            {
+                                "type": "integer"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Max Tokens"
+                    },
+                    "temperature": {
+                        "anyOf": [
+                            {
+                                "type": "number"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Temperature"
+                    },
+                    "top_p": {
+                        "anyOf": [
+                            {
+                                "type": "number"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Top P"
+                    },
+                    "top_k": {
+                        "anyOf": [
+                            {
+                                "type": "integer"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Top K"
+                    },
+                    "stop_sequences": {
+                        "anyOf": [
+                            {
+                                "items": {
+                                    "type": "string"
+                                },
+                                "type": "array"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Stop Sequences"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "model_name",
+                    "prompt"
+                ],
+                "title": "InvokeModelRequest"
+            },
+            "InvokeModelWithRawInputRequest": {
+                "properties": {
+                    "model_id": {
+                        "type": "string",
+                        "title": "Model Id"
+                    },
+                    "raw_input": {
+                        "type": "object",
+                        "title": "Raw Input"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "model_id",
+                    "raw_input"
+                ],
+                "title": "InvokeModelWithRawInputRequest"
+            },
+            "ValidationError": {
+                "properties": {
+                    "loc": {
+                        "items": {
+                            "anyOf": [
+                                {
+                                    "type": "string"
+                                },
+                                {
+                                    "type": "integer"
+                                }
+                            ]
+                        },
+                        "type": "array",
+                        "title": "Location"
+                    },
+                    "msg": {
+                        "type": "string",
+                        "title": "Message"
+                    },
+                    "type": {
+                        "type": "string",
+                        "title": "Error Type"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "loc",
+                    "msg",
+                    "type"
+                ],
+                "title": "ValidationError"
+            },
+            "RegisterFileRequest": {
+                "properties": {
+                    "job_id": {
+                        "type": "string",
+                        "title": "Job Id"
+                    },
+                    "file_name": {
+                        "type": "string",
+                        "title": "File Name"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "job_id",
+                    "file_name"
+                ],
+                "title": "RegisterFileRequest"
+            },
+            "StartJobRequest": {
+                "properties": {
+                    "job_id": {
+                        "type": "string",
+                        "title": "Job Id"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "job_id"
+                ],
+                "title": "StartJobRequest"
+            }
+        }
+    }
+}

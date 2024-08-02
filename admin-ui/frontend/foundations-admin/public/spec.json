@@ -1,0 +1,202 @@
+{
+    "openapi": "3.1.0",
+    "info": {
+        "title": "Generative AI Foundations API",
+        "version": "0.1"
+    },
+    "paths": {
+        "/model/service/health": {
+            "get": {
+                "summary": "Model Service Health",
+                "operationId": "model_service_health_model_service_health_get",
+                "tags": [
+                    "Model Service"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/example1": {
+            "post": {
+                "summary": "Example1 Post",
+                "operationId": "example1_post_api_example1_post",
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/example2": {
+            "get": {
+                "summary": "Example2 Get",
+                "operationId": "example2_get_api_example2_get",
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "summary": "Example2 Post",
+                "operationId": "example2_post_api_example2_post",
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/docs": {
+            "get": {
+                "summary": "Get Docs",
+                "operationId": "get_docs_docs_get",
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/openapi.json": {
+            "get": {
+                "summary": "Get Openapi",
+                "operationId": "get_openapi_openapi_json_get",
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/auth/status": {
+            "get": {
+                "summary": "Auth Status",
+                "operationId": "auth_status_api_auth_status_get",
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/your_protected_route": {
+            "get": {
+                "summary": "Protected Route",
+                "operationId": "protected_route_api_your_protected_route_get",
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/services/health": {
+            "get": {
+                "summary": "Protected Route",
+                "operationId": "protected_route_api_services_health_get",
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/sample_endpoint": {
+            "post": {
+                "summary": "Sample Endpoint",
+                "operationId": "sample_endpoint_api_sample_endpoint_post",
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/create_app_client": {
+            "post": {
+                "summary": "Create App Client",
+                "operationId": "create_app_client_api_create_app_client_post",
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/get_all_app_clients": {
+            "get": {
+                "summary": "Get All App Clients",
+                "operationId": "get_all_app_clients_api_get_all_app_clients_get",
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,32 @@
+{
+  "name": "nuxt-app",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare"
+  },
+  "dependencies": {
+    "@aws-sdk/client-cognito-identity-provider": "^3.575.0",
+    "@nuxt/ui": "^2.16.0",
+    "amazon-cognito-identity-js": "^6.3.12",
+    "date-fns": "^2.30.0",
+    "nuxt": "^3.11.2",
+    "nuxt-auth-utils": "^0.0.24",
+    "nuxt-security": "^2.0.0-rc.9",
+    "swagger-ui": "^5.17.13",
+    "swagger-ui-dist": "^5.17.13",
+    "v-calendar": "^3.1.2",
+    "vue": "^3.4.27",
+    "vue-router": "^4.3.2"
+  },
+  "devDependencies": {
+    "@types/swagger-ui": "^3.52.4",
+    "autoprefixer": "^10.4.19",
+    "postcss": "^8.4.38",
+    "tailwindcss": "^3.4.3"
+  }
+}

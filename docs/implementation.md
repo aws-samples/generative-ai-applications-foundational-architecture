@@ -18,7 +18,7 @@ Before you begin, ensure you have the following:
 #### Implementation Steps
 1. #### Clone repository
 ```
-git clone git@ssh.gitlab.aws.dev:wwso-gtm-specialists-dev/genai-launchpad.git
+git clone https://github.com/aws-samples/generative-ai-applications-foundational-architecture.git
 ```
 This will clone the repository to your local workstation.
 It will have the following folder structure.

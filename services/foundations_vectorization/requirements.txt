@@ -28,7 +28,7 @@ jmespath==1.0.1
 jsonpatch==1.33
 jsonpointer==2.4
 langchain==0.2.7
-langchain-community==0.2.7
+langchain-community==0.2.9
 langchain-core==0.2.18
 langchain-text-splitters==0.2.2
 langsmith==0.1.85

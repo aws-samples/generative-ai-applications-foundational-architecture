@@ -1,6 +1,11 @@
 # Generative AI Applications Foundational Architecture
 
-> Please note that this deployment works on us-east-1 and us-west-2 regions.
+
+*This sample is not meant to be used as a platform as-is, but as an inspiration on how to build GenAI architectures with microservices on AWS. This makes lots of assumptions on the flow that might not be suitable for your unique enterprise requirements and it may not include some of the recently released AWS service features.* 
+
+*Please note that you may incur AWS charges for deploying this into your AWS account as not all services used are part of the free tier and you might exceed the free tier usage limit. To track costs in your AWS account, consider using AWS Cost Explorer and AWS Billing and Cost Management. You can also set up a billing alarm to get notified of unexpected charges.*
+
+> Please note that this deployment works on us-east-1 and us-west-2 regions only.
 
 ## Table of contents
 - [Overview](#Overview)
@@ -199,3 +204,6 @@ Applications invoking API endpoints via API gateway are authenticated using a Co
 2. Scaling Microservices: By default the solution deploys only one task for each microservice. The microservices can be scaled to handle more requests by increasing the desired task count. Please refer to the following documentation: https://docs.aws.amazon.com/AmazonECS/latest/developerguide/service_definition_parameters.html#sd-desiredcount
     - You can optionally implement an auto scaling policy: https://docs.aws.amazon.com/AmazonECS/latest/developerguide/service-auto-scaling.html
 3. DynamoDB Recovery and Backups: Solution does not implement backups or recovery strategies for DynamoDB tables used in the architecture. It's recommended you enable Point-in-time backups for production deployments: https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Backup-and-Restore.html
+
+## 🤝 Support & Feedback
+This solution is maintained by AWS Solution Architects and is not an AWS service. Support is provided on a best effort basis by the AWS community. If you have feedback, feature ideas, or wish to report bugs, please use the [Issues](https://github.com/aws-samples/generative-ai-applications-foundational-architecture/issues) section of this GitHub.
